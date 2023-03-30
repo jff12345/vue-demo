@@ -19,7 +19,8 @@
   <el-button  size="small" @click="addHawkeye()">{{ hawkeyeTitle }}</el-button>
   <el-button  size="small" @click="addPunctuation()">{{ punctuationTitle }}</el-button>
   <el-button  size="small" @click="addTerrain()">{{ terrainTitle }}</el-button>
-
+  <el-button  size="small" @click="addBlueImage()">{{ blueImageTitle }}</el-button>
+  <el-button  size="small" @click="startMoving()">出发</el-button>
   </div>
 </template>
 <script setup>
@@ -38,7 +39,8 @@ import {
          hawkeyeAPI,              //  鹰眼图
          punctuationsAPI ,        //  添加标签
          terrainAPI,              //  添加地形
-       
+         blueImageAPI,            //  蓝色影像
+         startMovingAPI,          //  
         } from '@/cesium/cesium.js'
 import {ref ,reactive ,watch } from 'vue'
 
@@ -192,10 +194,18 @@ function addTerrain(){
 
 
 
+const b = ref(false)
+const blueImageTitle = ref('添加蓝色影像')
+function addBlueImage(){
+  b.value=!b.value
+  b.value==true?blueImageTitle.value='移除蓝色影像':blueImageTitle.value='添加蓝色影像';
+  blueImageAPI(b.value)
+}
 
 
-
-
+function startMoving(){
+  startMovingAPI()
+}
 
 
 

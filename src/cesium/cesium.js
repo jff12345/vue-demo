@@ -30,10 +30,11 @@ export default class {
         viewer.selectionIndicator.viewModel.selectionIndicatorElement.style.display = 'none';
         viewer.infoBox.frame.contentWindow.document.body.innerHTML = "";
         viewer.infoBox.container.style.display = "none";
-        console.log(viewer);
+
         map = new mars3d.Map(viewer, {
             scene: {
                 center: { lat: 30.054604, lng: 108.885436, alt: 17036414, heading: 0, pitch: -90 },
+
                 shadows: true, //是否启用日照阴影
                 showSun: true, //是否显示太阳
                 showMoon: true, //是否显示月亮
@@ -49,6 +50,17 @@ export default class {
                     enableLighting: false //是否显示昼夜区域
                 },
             },
+            basemaps: [
+                {
+                    name: "Bing影像",
+                    icon: "img/basemaps/bingAerial.png",
+                    type: "bing",
+                    layer: Cesium.BingMapsStyle.AERIAL,
+                    key: mars3d.Token.bing,
+                    show: true
+                },
+
+            ],
 
             control: {
                 contextmenu: { hasDefault: true }, // 右键菜单
@@ -251,7 +263,7 @@ function bindLayerPopup(a) {
         const myButton = container.querySelector("#myButton")
         if (myButton) {
             myButton.addEventListener("click", () => {
-                console.log('点击了');
+
             })
         }
     })
@@ -275,10 +287,8 @@ function bindLayerPopup(a) {
 }
 
 
-
+//添加地形服务
 export function terrainAPI(terrain) {
-
-
     if (terrain == true) {
         map.terrainProvider = mars3d.LayerUtil.createTerrainProvider({
             url: "http://data.mars3d.cn/terrain"
@@ -286,29 +296,25 @@ export function terrainAPI(terrain) {
     } else {
         map.terrainProvider = mars3d.LayerUtil.getNoTerrainProvider()
     }
+}
 
+const blueImage = new mars3d.layer.ImageLayer({
+    url: "//data.mars3d.cn/file/img/world/blue.jpg",
 
+})
+export function blueImageAPI(b) {
+
+    b == true ? map.addLayer(blueImage) : map.removeLayer(blueImage)
 }
 
 
+const property = new Cesium.SampledPositionProperty()
+property.forwardExtrapolationType = Cesium.ExtrapolationType.HOLD
+export function startMovingAPI() {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    // console.log(property);
+    console.log(map.setSceneOptions);
+}
 
 
 export { map, id }
