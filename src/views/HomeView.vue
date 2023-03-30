@@ -18,6 +18,7 @@
   <el-button  size="small" @click="addCar()">{{ carTitle }}</el-button>
   <el-button  size="small" @click="addHawkeye()">{{ hawkeyeTitle }}</el-button>
   <el-button  size="small" @click="addPunctuation()">{{ punctuationTitle }}</el-button>
+  <el-button  size="small" @click="addTerrain()">{{ terrainTitle }}</el-button>
 
   </div>
 </template>
@@ -36,7 +37,7 @@ import {
          addDemoGraphic1,         //  小车模型
          hawkeyeAPI,              //  鹰眼图
          punctuationsAPI ,        //  添加标签
-        
+         terrainAPI,              //  添加地形
        
         } from '@/cesium/cesium.js'
 import {ref ,reactive ,watch } from 'vue'
@@ -49,6 +50,7 @@ function reposition(){
 }
 // 复位结束
 
+// 飞行漫游开始开始
 const arr = reactive([
 { lat: 39.905757, lng: 116.391245, alt: 697.3, heading: 0, pitch: -26.2 ,duration:10,stop:0 },
 { lat: 39.905757, lng: 116.391245, alt: 697.3, heading: 90, pitch: -26.2,duration:2,stop:0 },
@@ -59,7 +61,7 @@ const arr = reactive([
 function  revolveHawkeye(){
   flyRoaming(arr)
 }
-
+// 飞行漫游结束
 // 调整亮度开始
 const  brightness = ref(1)
 const issubtractBrightness=ref(false)
@@ -177,12 +179,16 @@ function addPunctuation(){
 // 添加鹰眼图结束
 
 
+// 添加地形数据开始
+const terrain = ref(false)
+const terrainTitle = ref('添加地形')
+function addTerrain(){
+  terrain.value=!terrain.value
+  terrain.value==true?terrainTitle.value='移除地形':terrainTitle.value='添加地形';
+  terrainAPI(terrain.value)
+}
 
-
-
-
-
-
+// 添加地形数据结束
 
 
 

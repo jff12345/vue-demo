@@ -1,0 +1,25 @@
+[
+    {
+        "name": "地球",
+        "identity": "cesium",
+        "submenu": []
+    },
+    {
+        "name": "vue3",
+        "identity": "liu",
+        "submenu": [
+            {
+                "name": "操作状态管理",
+                "identity": "vuex"
+            },
+            {
+                "name": "操作watch监听",
+                "identity": "watch"
+            },
+            {
+                "name": "通信",
+                "identity": "correspondence"
+            }
+        ]
+    }
+]

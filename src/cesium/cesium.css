@@ -1,0 +1,27 @@
+.marsGreenGradientPnl {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.icon {
+    width: 25px;
+    height: 25px;
+}
+
+.popup {
+    background-color: #ccc;
+    opacity: 1;
+    width: 200px;
+    height: 100px;
+    border-radius: 10px;
+}
+
+.time {
+    height: 20px;
+    border: 1px solid black;
+}
+
+.hover:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
